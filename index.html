@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>V.S. Tholkappiyan - Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(to bottom, #3a7d44, #a36f40);
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* VST Initials Animation */
+    .vst-initials {
+      position: fixed;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 1;
+      opacity: 0.3;
+    }
+
+    .vst-letter {
+      font-size: 3rem;
+      font-weight: bold;
+      margin: 5px 0;
+      opacity: 0;
+      animation: fadeInOut 8s infinite;
+    }
+
+    .vst-letter:nth-child(1) { animation-delay: 0.5s; }
+    .vst-letter:nth-child(2) { animation-delay: 1s; }
+    .vst-letter:nth-child(3) { animation-delay: 1.5s; }
+
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0; transform: translateY(20px); }
+      20%, 80% { opacity: 0.3; transform: translateY(0); }
+    }
+
+    /* Updated Navigation Bar */
+    nav {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 1rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2rem;
+      padding: 0.5rem 1rem;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeInDown 0.5s forwards;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #fff;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      opacity: 1;
+      transform: translateY(0) scale(1.1);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    @keyframes fadeInDown {
+      to {
+        opacity: 0.7;
+        transform: translateY(0);
+      }
+    }
+
+    /* Different animation delays for nav items */
+    nav a:nth-child(1) { animation-delay: 0.1s; }
+    nav a:nth-child(2) { animation-delay: 0.3s; }
+    nav a:nth-child(3) { animation-delay: 0.5s; }
+    nav a:nth-child(4) { animation-delay: 0.7s; }
+
+    .container {
+      padding: 6rem 2rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 5;
+      text-align: center;
+    }
+
+    /* Home Content Styles */
+    .home-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      margin-top: 2rem;
+      text-align: left;
+    }
+
+    .intro {
+      font-size: 1.3rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      flex: 1;
+    }
+
+    .profile-rectangle {
+      width: 250px;
+      height: 300px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 4px solid #a36f40;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      transition: transform 0.5s ease;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .profile-rectangle:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* Skills Content Styles */
+    .skills-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .skill-item {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .letter {
+      display: inline-block;
+      opacity: 0;
+      animation: blink 1.5s ease-in-out forwards;
+    }
+
+    .skills-intro {
+      font-style: italic;
+      margin-bottom: 2rem;
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 1rem;
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+    }
+
+    /* Letter animation delays */
+    .letter:nth-child(1) { animation-delay: 0.1s; }
+    .letter:nth-child(2) { animation-delay: 0.3s; }
+    .letter:nth-child(3) { animation-delay: 0.5s; }
+    .letter:nth-child(4) { animation-delay: 0.7s; }
+    .letter:nth-child(5) { animation-delay: 0.9s; }
+    .letter:nth-child(6) { animation-delay: 1.1s; }
+    .letter:nth-child(7) { animation-delay: 1.3s; }
+    .letter:nth-child(8) { animation-delay: 1.5s; }
+
+    @keyframes blink {
+      0% { opacity: 0; transform: translateY(20px); }
+      50% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 1; }
+    }
+
+    /* Projects Content Styles */
+    .project-title {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: white;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #e6e6e6, 0 0 20px #e6e6e6;
+      }
+      to {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e6e6e6, 0 0 40px #e6e6e6;
+      }
+    }
+
+    .project-card {
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      border-left: 4px solid #a36f40;
+      animation: slideIn 1s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .feature-title {
+      font-size: 1.5rem;
+      color: white;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    .feature-desc {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .project-link {
+      display: inline-block;
+      background-color: rgba(163, 111, 64, 0.5);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 1rem;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .project-link:hover {
+      background-color: rgba(163, 111, 64, 0.7);
+      transform: scale(1.05);
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .tech-item {
+      background-color: rgba(163, 111, 64, 0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      animation: popIn 0.5s ease-out;
+      animation-fill-mode: both;
+    }
+
+    @keyframes popIn {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+      80% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Contact Content Styles */
+    .contact-card {
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 2rem;
+      border-radius: 10px;
+      margin: 2rem auto;
+      max-width: 500px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .contact-info {
+      text-align: left;
+      margin: 1.5rem 0;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.2rem;
+      font-size: 1.1rem;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      margin-right: 1rem;
+      background-color: rgba(163, 111, 64, 0.5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-link {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-link:hover {
+      color: #f0c674;
+      text-decoration: underline;
+    }
+
+    .profile-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #a36f40;
+      margin-bottom: 1.5rem;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(163, 111, 64, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(163, 111, 64, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(163, 111, 64, 0); }
+    }
+
+    /* Content Section Management */
+    .content-section {
+      display: none;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .active-content {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Project grid layout */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    /* Download Resume Bar */
+    .resume-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(163, 111, 64, 0.9);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      z-index: 200;
+      transform: translateY(100%);
+      transition: transform 0.5s ease;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .resume-bar.show {
+      transform: translateY(0);
+    }
+
+    .resume-link {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 5px 15px;
+      border: 2px solid white;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .resume-link:hover {
+      background-color: white;
+      color: #a36f40;
+    }
+
+    /* Contact Profile Rectangle */
+    .contact-profile {
+      width: 200px;
+      height: 250px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 4px solid #a36f40;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @media (min-width: 768px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .home-wrapper {
+        flex-direction: row;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .home-wrapper {
+        flex-direction: column;
+      }
+      
+      nav {
+        gap: 1rem;
+        padding: 0.8rem;
+      }
+      
+      nav a {
+        font-size: 1rem;
+        padding: 0.3rem 0.8rem;
+      }
+
+      .vst-initials {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- VST Initials Animation -->
+  <div class="vst-initials">
+    <div class="vst-letter">V</div>
+    <div class="vst-letter">S</div>
+    <div class="vst-letter">T</div>
+  </div>
+
+  <nav>
+    <a href="#" id="home-link">Home</a>
+    <a href="#" id="skills-link">Skills</a>
+    <a href="#" id="projects-link">Projects</a>
+    <a href="#" id="contact-link">Contact</a>
+  </nav>
+
+  <div class="container">
+    <!-- Home Content -->
+    <div id="home-content" class="content-section active-content">
+      <h1>Benvenuti nel Mio Mondo Digitale!</h1>
+      <div class="home-wrapper">
+        <div class="intro">
+           <p>Ciao ! Sono <strong>V.S. Tholkappiyan</strong>, a passionate technology student currently pursuing my Bachelor's Degree in Computer Science Engineering at the prestigious <strong>St. Joseph's Institute of Technology</strong>.</p>
+‎ <p>Throughout my academic journey, I have cultivated a deep passion for software development and technological innovation. This portfolio represents my professional evolution, a visual story of the skills acquired and the projects completed with dedication.</p>
+‎ <p>Every line of code I write, every challenge I face, brings me here, ready to share with you the fruit of my efforts. I hope that by browsing these pages you can perceive not only my technical skills, but above all the enthusiasm and determination that guide me in this journey.</p>
+‎ <p>Thank you for choosing to explore my digital world. Happy browsing!</p>
+        </div>
+        <img src="https://lh3.googleusercontent.com/fife/ALs6j_GexVjLO4EU8PyH4v5IsDt5rZGQTuBp0KFY9cYaXAsxJJ7h0QhuWqz8GxoLwW1kqjrFwVzcDwbG9QOemvngLhirwG-NmctoGJ2KB5aib3oaEzS-eTJqaQR3UtceKN4JgVj1Q8clG-iUPY2qunba8p3ZYaRAHW5HZB-tn4XKQRbtjkH5joTU_aKwrdSw7ZcipEIcCfiHRMNF09VNhHbimHsY_i9NH7hdn2khDysSnkSrlLVgikqcUQxR_fGt13YXZHGqBmf9ofqwgK14PZJlBrL3u-hNJi1f5O88cGiG_TZl3k5paYoKr1ZJsw0KNAGpUqG3YMA150gNQhb2jxQCcLTqVw0IZgVfRQYYN3FU9EqrpfWAliJo57Ep4rmYwMSc25OaEBOCD9Q1MW-DkS0IOGs1ZvYjPlT9bVg-GgnHEQoPhVleZeRsRflPVyBJ6NlHaoiY2c7-HUwsLKU0p_O3VNf8fZhGQOgTo_R5Z5SJVHIOet30gjtTZmp4F4eZe8mgCaHvrI0NW410TuTSMvpJQwYf3c_IGrQXvtX_zOY0W86zyVXG7McqF_mXcpNZtkTZZBrSmasgsx69wZ8kHxwGmrFs377BVnVNlofm4kmO0BoLUrI-kC-o5tCCn_phkBtEDwWbPAi5olN_rRSBEefrjYY6mzBzhKh8_1ufJKU67bw8M7ymHHCjfNJz-QPPVoOkrBo2Rkx8BFCVw2z5v4L_8Rg0pxBeFYce-IX8jNlT2U8t6M1aDNKBYkzS8wOs6n1ZzmqauPKeWnoKsYyrwgE9hm7C8PXi39izijPMUy66s_l988LrQ0qsDdR95se8rX8JML-kYjoM013n4pEy9xPTwDiVSSnasszOGgFxeJyipZP2Rp5Q-TjPVu7xzNf_sCZeTUMMFurLAmXxYhxZmq4Nx_gInujkudn1ibhfkszasE6ytnz17jqNahh9i0PW2TdpLX_uREA74EMArFeP2XrmLdlp3v_vKSA207XdtMnq1I0U2YoJkU26rs70mAcDpIFgVlEewRu2CCGubPiqBuapT-HNMj1KawgJD2S0MAwIrP9fYmSg4knD35Svh6Ugg9nkG8SyRwaQafcHFwt9TLEh0z2JRXacRUPtxaaRlApPlyC84cDs77oc7PR3bvXvXhfAOL8dHlz3Y6MfwZjScKpJSfcgM6tlwl4tpHr9HPfgCpP0I1LmTUQQTYDdk2KeyUu-mG7qfBGtzlsgUaiV4FeGYrpMYZBZtOevmPSYG3FAG2kz98jDT-NFHlSgScGaVyVVVIOZ1GF02WF_spZdu0CDAKR4RHpOhcpcVqExMieOV6_lwFXh4M_DeIky1_Hzy3vbB1JWhLu1DxAkXL0nb92WQjOrUEqd7BW0RRr_X1rWamZq14KpgaGmZCiP=s1926-w1472-h1926-n-k?authuser=0&hl=en-US" alt="V.S. Tholkappiyan" class="profile-rectangle">
+      </div>
+    </div>
+
+    <!-- Skills Content -->
+    <div id="skills-content" class="content-section">
+      <h1>My Skills</h1>
+      <div class="skills-intro">
+        "Mistakes are the portals of discovery." - James Joyce<br><br>
+        Every error I've made has been a stepping stone to mastery. Through countless hours of practice, debugging, and learning from failures, I've cultivated these technical skills. Each represents not just knowledge acquired, but problems solved and challenges overcome in my journey as a developer.
+      </div>
+      <div class="skills-list">
+        <div class="skill-item">
+          <span class="letter">J</span><span class="letter">a</span><span class="letter">v</span><span class="letter">a</span>
+        </div>
+        <div class="skill-item">
+          <span class="letter">C</span>
+        </div>
+        <div class="skill-item">
+          <span class="letter">P</span><span class="letter">y</span><span class="letter">t</span><span class="letter">h</span><span class="letter">o</span><span class="letter">n</span>
+        </div>
+        <div class="skill-item">
+          <span class="letter">A</span><span class="letter">I</span>
+          &nbsp;
+          <span class="letter">U</span><span class="letter">s</span><span class="letter">e</span><span class="letter">r</span>
+        </div>
+        <div class="skill-item">
+          <span class="letter">H</span><span class="letter">T</span><span class="letter">M</span><span class="letter">L</span>
+        </div>
+        <div class="skill-item">
+          <span class="letter">C</span><span class="letter">S</span><span class="letter">S</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Projects Content -->
+    <div id="projects-content" class="content-section">
+      <h1>My Projects</h1>
+      
+      <div class="projects-grid">
+        <!-- Project 1: Voice Effect Calculator -->
+        <div class="project-card">
+          <h2 class="project-title">Voice Effect Calculator</h2>
+          
+          <div class="feature-desc">
+            An innovative calculator that provides auditory feedback when buttons are pressed, enhancing accessibility and user experience.
+          </div>
+
+          <div class="feature-title">Key Features:</div>
+          <ul style="text-align: left; padding-left: 1.5rem;">
+            <li>Interactive voice feedback for all operations</li>
+            <li>Responsive design works on all devices</li>
+            <li>Clear audio cues for better accessibility</li>
+          </ul>
+
+          <div class="tech-stack">
+            <div class="tech-item">HTML5</div>
+            <div class="tech-item">CSS3</div>
+            <div class="tech-item">JavaScript</div>
+            <div class="tech-item">Web Speech API</div>
+          </div>
+
+          <a href="https://tholkappiyan-vst.github.io/Calculator-/" class="project-link" target="_blank">View Project</a>
+        </div>
+
+        <!-- Project 2: Stone Paper Scissors Game -->
+        <div class="project-card">
+          <h2 class="project-title">Stone Paper Scissors Game</h2>
+          
+          <div class="feature-desc">
+            A classic game reimagined for the web with smooth animations and responsive design for an engaging user experience.
+          </div>
+
+          <div class="feature-title">Key Features:</div>
+          <ul style="text-align: left; padding-left: 1.5rem;">
+            <li>Interactive gameplay with score tracking</li>
+            <li>Vibrant animations and visual feedback</li>
+            <li>Responsive design for all screen sizes</li>
+          </ul>
+
+          <div class="tech-stack">
+            <div class="tech-item">HTML5</div>
+            <div class="tech-item">CSS3</div>
+            <div class="tech-item">JavaScript</div>
+          </div>
+
+          <a href="https://tholkappiyan-vst.github.io/Stone_paper_scissor_game/" class="project-link" target="_blank">Play Game</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Content -->
+    <div id="contact-content" class="content-section">
+      <h1>Contact Me</h1>
+      
+      <div class="contact-card">
+        <img src="https://lh3.googleusercontent.com/fife/ALs6j_GexVjLO4EU8PyH4v5IsDt5rZGQTuBp0KFY9cYaXAsxJJ7h0QhuWqz8GxoLwW1kqjrFwVzcDwbG9QOemvngLhirwG-NmctoGJ2KB5aib3oaEzS-eTJqaQR3UtceKN4JgVj1Q8clG-iUPY2qunba8p3ZYaRAHW5HZB-tn4XKQRbtjkH5joTU_aKwrdSw7ZcipEIcCfiHRMNF09VNhHbimHsY_i9NH7hdn2khDysSnkSrlLVgikqcUQxR_fGt13YXZHGqBmf9ofqwgK14PZJlBrL3u-hNJi1f5O88cGiG_TZl3k5paYoKr1ZJsw0KNAGpUqG3YMA150gNQhb2jxQCcLTqVw0IZgVfRQYYN3FU9EqrpfWAliJo57Ep4rmYwMSc25OaEBOCD9Q1MW-DkS0IOGs1ZvYjPlT9bVg-GgnHEQoPhVleZeRsRflPVyBJ6NlHaoiY2c7-HUwsLKU0p_O3VNf8fZhGQOgTo_R5Z5SJVHIOet30gjtTZmp4F4eZe8mgCaHvrI0NW410TuTSMvpJQwYf3c_IGrQXvtX_zOY0W86zyVXG7McqF_mXcpNZtkTZZBrSmasgsx69wZ8kHxwGmrFs377BVnVNlofm4kmO0BoLUrI-kC-o5tCCn_phkBtEDwWbPAi5olN_rRSBEefrjYY6mzBzhKh8_1ufJKU67bw8M7ymHHCjfNJz-QPPVoOkrBo2Rkx8BFCVw2z5v4L_8Rg0pxBeFYce-IX8jNlT2U8t6M1aDNKBYkzS8wOs6n1ZzmqauPKeWnoKsYyrwgE9hm7C8PXi39izijPMUy66s_l988LrQ0qsDdR95se8rX8JML-kYjoM013n4pEy9xPTwDiVSSnasszOGgFxeJyipZP2Rp5Q-TjPVu7xzNf_sCZeTUMMFurLAmXxYhxZmq4Nx_gInujkudn1ibhfkszasE6ytnz17jqNahh9i0PW2TdpLX_uREA74EMArFeP2XrmLdlp3v_vKSA207XdtMnq1I0U2YoJkU26rs70mAcDpIFgVlEewRu2CCGubPiqBuapT-HNMj1KawgJD2S0MAwIrP9fYmSg4knD35Svh6Ugg9nkG8SyRwaQafcHFwt9TLEh0z2JRXacRUPtxaaRlApPlyC84cDs77oc7PR3bvXvXhfAOL8dHlz3Y6MfwZjScKpJSfcgM6tlwl4tpHr9HPfgCpP0I1LmTUQQTYDdk2KeyUu-mG7qfBGtzlsgUaiV4FeGYrpMYZBZtOevmPSYG3FAG2kz98jDT-NFHlSgScGaVyVVVIOZ1GF02WF_spZdu0CDAKR4RHpOhcpcVqExMieOV6_lwFXh4M_DeIky1_Hzy3vbB1JWhLu1DxAkXL0nb92WQjOrUEqd7BW0RRr_X1rWamZq14KpgaGmZCiP=s1926-w1472-h1926-n-k?authuser=0&hl=en-US" alt="Profile" class="contact-profile">
+        
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">📱</div>
+            <a href="tel:+918610901578" class="contact-link">+91 8610901578</a>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <a href="mailto:tholkappiyan.vst@gmail.com" class="contact-link">tholkappiyan.vst@gmail.com</a>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">🔗</div>
+            <a href="https://www.linkedin.com/in/v-s-tholkappiyan-v-s-t-a32a11326?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
+               class="contact-link" target="_blank">LinkedIn Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Download Resume Bar -->
+  <div class="resume-bar" id="resumeBar">
+    <a href="https://drive.google.com/file/d/1YZp8Epz_S41ydEVW5U_QefVFPIu2MrXL/view?usp=drivesdk" 
+       class="resume-link" target="_blank">Download My Resume</a>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Show resume bar after delay
+      setTimeout(function() {
+        document.getElementById('resumeBar').classList.add('show');
+      }, 1500);
+
+      // Get all navigation links and content sections
+      const homeLink = document.getElementById('home-link');
+      const skillsLink = document.getElementById('skills-link');
+      const projectsLink = document.getElementById('projects-link');
+      const contactLink = document.getElementById('contact-link');
+      
+      const homeContent = document.getElementById('home-content');
+      const skillsContent = document.getElementById('skills-content');
+      const projectsContent = document.getElementById('projects-content');
+      const contactContent = document.getElementById('contact-content');
+
+      // Show home content by default
+      showContent(homeContent);
+
+      // Navigation click handlers
+      homeLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        showContent(homeContent);
+        setActiveNav(homeLink);
+      });
+
+      skillsLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        showContent(skillsContent);
+        setActiveNav(skillsLink);
+      });
+
+      projectsLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        showContent(projectsContent);
+        setActiveNav(projectsLink);
+      });
+
+      contactLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        showContent(contactContent);
+        setActiveNav(contactLink);
+      });
+
+      // Function to show content and hide others
+      function showContent(contentToShow) {
+        [homeContent, skillsContent, projectsContent, contactContent].forEach(section => {
+          section.classList.remove('active-content');
+        });
+        contentToShow.classList.add('active-content');
+      }
+
+      // Function to set active navigation style
+      function setActiveNav(activeLink) {
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+          link.style.opacity = '0.7';
+          link.style.transform = 'scale(1)';
+        });
+        activeLink.style.opacity = '1';
+        activeLink.style.transform = 'scale(1.1)';
+      }
+
+      // Initialize active nav
+      setActiveNav(homeLink);
+    });
+  </script>
+</body>
+</html>
